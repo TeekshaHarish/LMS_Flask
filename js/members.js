@@ -1,11 +1,11 @@
 const token = localStorage.getItem("token");
-if (!token) window.location.href = "members";
+if (!token) window.location.href = "index.html";
 
 const apiBaseURL = "http://127.0.0.1:5000";
 
 async function fetchMembers(page = 1, query = "") {
   try {
-    const response = await fetch(`${apiBaseURL}/get-members?page=${page}&q=${query}`, {
+    const response = await fetch(`${apiBaseURL}/members?page=${page}&q=${query}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 

@@ -16,7 +16,7 @@ document.getElementById("login-form")?.addEventListener("submit", async (e) => {
       const data = await response.json();
       localStorage.setItem("token", data.token);
       alert("Login successful!");
-      window.location.href = "books";
+      window.location.href = "books.html";
     } else {
       alert("Invalid credentials.");
     }
@@ -39,7 +39,7 @@ document.getElementById("register-form")?.addEventListener("submit", async (e) =
 
     if (response.ok) {
       alert("Registration successful!");
-      window.location.href = "/";
+      window.location.href = "index.html";
     } else {
       alert("Registration failed.");
     }

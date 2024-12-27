@@ -1,11 +1,11 @@
 const token = localStorage.getItem("token");
-if (!token) window.location.href = "login.html";
+if (!token) window.location.href = "index.html";
 
 const apiBaseURL = "http://127.0.0.1:5000";
 
 async function fetchBooks(page = 1, query = "") {
   try {
-    const response = await fetch(`${apiBaseURL}/get-books?page=${page}&q=${query}`, {
+    const response = await fetch(`${apiBaseURL}/books?page=${page}&q=${query}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -75,7 +75,6 @@ document.getElementById("book-form").addEventListener("submit", async (e) => {
     if (response.ok) {
       alert("Book saved successfully!");
       fetchBooks();
-      // window.location.reload();
       document.getElementById("book-form").reset();
       document.querySelector("#addBookModal .btn-close").click();
     } else {

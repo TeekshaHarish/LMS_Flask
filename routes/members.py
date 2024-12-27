@@ -4,13 +4,17 @@ from models import db, Member
 
 members_bp = Blueprint("members", __name__)
 
-@members_bp.route("/members", methods=["GET"])
+@members_bp.route("/get-members", methods=["GET"])
 @jwt_required()
 def get_members():
     query = request.args.get("q", "")
     page = int(request.args.get("page", 1))
     per_page = 10
-    members = Member.query.filter(Member.name.ilike(f"%{query}%")).paginate(page, per_page, error_out=False)
+    members = members = Member.query.filter(Member.name.ilike(f"%{query}%")).paginate(
+        page=page,
+        per_page=per_page,
+        error_out=False
+    )
     data = {
         "members": [{"id": m.id, "name": m.name, "email": m.email} for m in members.items],
         "page": members.page,

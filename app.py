@@ -17,16 +17,6 @@ db.init_app(app)
 jwt = JWTManager(app)
 CORS(app)
 
-# Register blueprints
-app.register_blueprint(auth_bp)
-app.register_blueprint(books_bp)
-app.register_blueprint(members_bp)
-
-# Database creation
-# @app.before_first_request
-# def create_tables():
-#     db.create_all()
-
 # Render Login Page (GET request)
 @app.route('/', methods=['GET'])
 def login_page():
@@ -46,6 +36,18 @@ def books_page():
 @app.route('/members', methods=['GET'])
 def memebers_page():
     return render_template('members.html')
+
+
+# Register blueprints
+app.register_blueprint(auth_bp)
+app.register_blueprint(books_bp)
+app.register_blueprint(members_bp)
+
+# Database creation
+# @app.before_first_request
+# def create_tables():
+#     db.create_all()
+
 
 if __name__ == "__main__":
     with app.app_context():
